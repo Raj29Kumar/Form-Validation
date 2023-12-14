@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Complete Form Example</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
+    <style>
+      /* Custom CSS for additional styling */
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 20px;
+      }
+      .container {
+        background-color: #fff;
+        padding: 40px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+    </style>
+
+    <script>
+      $(function () {
+        var dateFormat = "mm/dd/yy",
+          from = $("#from").datepicker({
+            defaultDate: "+1w",
+            changeMonth: true,
+            numberOfMonths: 1,
+            minDate: 0,
+          });
+      });
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4">
+          <h2>Validated Form</h2>
+          <form>
+            <div class="form-group">
+              <label for="fullName">Full Name:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="fullName"
+                placeholder="Enter your full name"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="email">Email:</label>
+              <input
+                type="email"
+                class="form-control"
+                id="email"
+                placeholder="Enter your email"
+                required
+              />
+              <span
+                id="emailError"
+                style="color: red; display: none; font-weight: 700;"
+                >Please Type Write Email........</span
+              >
+              <span id="good" style="color: green; display: none;"
+                >Good....</span
+              >
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone Number:</label>
+              <input
+                type="tel"
+                class="form-control"
+                id="phone"
+                placeholder="Enter your phone number"
+                required
+              />
+              <span
+              id="phoneError"
+              style="color: red; display: none; font-weight: 200;"
+              >Please Input Validated Mobile Number</span
+            >
+            <span id="phonegood" style="color: green; display: none;"
+              >Good....</span
+            >
+            </div>
+
+            <div class="form-group">
+              <label for="dob">Date of Birth:</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <i class="fas fa-calendar-alt"></i>
+                  </span>
+                </div>
+                <input type="text" class="form-control" id="from" required />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="gender">Gender:</label>
+              <select class="form-control" id="gender" required>
+                <option value="">Select your gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="address">Address:</label>
+              <textarea
+                class="form-control"
+                id="address"
+                placeholder="Enter your address"
+                rows="3"
+                required
+              ></textarea>
+              <div id="charCount" style="text-align: right; color: #999; font-size: small; font-weight: bolder;">
+                200/200
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+        <div class="col-4"></div>
+      </div>
+    </div>
+
+    <script>
+
+function synchronousTask() {
+  console.log("Task 1");
+  console.log("Task 2");
+  console.log("Task 3");
+}
+
+synchronousTask();
+console.log("All tasks completed synchronously");
+
+
+
+function asynchronousTask(callback) {
+  console.log("Task 1 2000");
+  setTimeout(function() {
+    console.log("Async task done");
+    callback();
+  }, 2000);
+}
+
+console.log("Before async task");
+asynchronousTask(function() {
+  console.log("All tasks completed asynchronously");
+});
+console.log("After async task");
+
+    </script>
+  </body>
+</html>
+
+

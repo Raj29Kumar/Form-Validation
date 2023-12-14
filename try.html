@@ -1,0 +1,74 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+  <title>Check Name Input</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+<label for="name">Name:</label>
+<input type="text" class="nameInput">
+
+<script>
+$(document).ready(function() {
+  $(".nameInput").on("input", function() {
+    var nameInput = $(this).val();
+
+    if (!/^[A-Za-z][A-Za-z\s]*$/.test(nameInput)) {
+    //   alert("Name should start with a letter and contain only letters and spaces");
+      $(this).val(nameInput.replace(/[^A-Za-z\s]/g, '')); // Remove non-letter and non-space characters
+    }
+  });
+});
+</script>
+
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Check Name Input</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+<label for="name">Name:</label>
+<input type="text" class="nameInput">
+
+<script>
+// $(document).ready(function() {
+//   $(".nameInput").on("input", function() {
+//     var nameInput = $(this).val();
+
+//     if (/^\s/.test(nameInput) || /[0-9]/.test(nameInput)) {
+//     //   alert("Name cannot start with a space or contain numbers");
+//       $(this).val(nameInput.replace(/^\s+|[0-9]/g, ''));
+//     }
+//   });
+// });
+
+$(document).ready(function() {
+  $(".nameInput").on("input", function() {
+    var nameInput = $(this).val();
+
+    // Check if the input starts with a space or contains disallowed characters
+    if (/^\s/.test(nameInput) || /[^A-Za-z\s]/.test(nameInput)) {
+    //   alert("Name should start with a letter and contain only letters and spaces after the first character");
+      
+      // Remove leading spaces and disallowed characters
+      $(this).val(nameInput.replace(/^\s+|[^A-Za-z\s]+/g, ''));
+    }
+  });
+});
+
+</script>
+
+</body>
+</html>
+
+
+
+
+

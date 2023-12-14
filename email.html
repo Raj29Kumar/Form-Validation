@@ -1,0 +1,85 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>JavaScript Email Validation</title>
+    <link rel="stylesheet" href="email.css" type="text/css" />
+  </head>
+
+  <body onload="document.form1.text1.focus()">
+    <div class="mail">
+      <h2>Input an email address</h2>
+      <form name="form1" action="#">
+        <ul>
+          <li><input type="text" name="text1" /></li>
+          <li>&nbsp;</li>
+          <li class="validate">
+            <input
+              type="submit"
+              name="validate"
+              value="Validate"
+              onclick="ValidateEmail(document.form1.text1)"
+            />
+          </li>
+          <li>&nbsp;</li>
+        </ul>
+      </form>
+    </div>
+    
+    <script>
+      function ValidateEmail(input) {
+        var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z]+)*$/;
+        if (input.value.match(validRegex)) {
+          alert("Valid email address!");
+          document.form1.text1.focus();
+          return true;
+        } else {
+          alert("Invalid email address!");
+          document.form1.text1.focus();
+          return false;
+        }
+      }
+    </script>
+  </body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>JavaScript Email Validation</title>
+  <link rel="stylesheet" href="email.css" type="text/css" />
+</head>
+
+<body>
+  <div class="mail">
+    <h2>Input company Website address</h2>
+    <form name="form1" action="#">
+        
+      <ul>
+        <li><input type="text" class="email-input" /></li>
+        <li><span class="error-msg" style="display: none; color: red;">Invalid email address!</span></li>
+      </ul>
+    </form>
+  </div>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const emailInput = document.querySelector('.email-input');
+      const errorMsg = document.querySelector('.error-msg');
+      const validRegex = /^[a-zA-Z+.[a-zA-Z]*$/;
+      
+      emailInput.addEventListener('input', function() {
+        if (emailInput.value.match(validRegex)) {
+          errorMsg.style.display = 'none'; 
+          emailInput.focus();
+        } else {
+          errorMsg.style.display = 'block';
+          emailInput.focus();
+        }
+      });
+    });
+  </script>
+</body>
+</html>
+

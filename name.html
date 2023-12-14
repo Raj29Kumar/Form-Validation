@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>JavaScript Character Limit</title>
+  <style>
+    .error-message {
+      color: red;
+      font-size: 12px;
+      display: none;
+      margin-top: 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <label for="firstName">First Name:</label>
+    <input class="form-control name floating" id="firstName" type="text" />
+    <span class="error-message">Invalid Format for First Name!</span>
+  </div>
+
+  <div>
+    <label for="lastName">Last Name:</label>
+    <input class="form-control last-name floating" id="lastName" type="text" />
+    <span class="error-message">Invalid Format for Last Name!</span>
+  </div>
+
+  <div>
+    <label for="secondName">Second Name:</label>
+    <input class="form-control second-name floating" id="secondName" type="text" />
+    <span class="error-message">Invalid Format for Second Name!</span>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <script>
+    $(document).ready(function () {
+      $(".form-control").on("input", function () {
+        var errorMessage = $(this).siblings('.error-message');
+        var inputValue = $(this).val();
+        var regex = /[^A-Za-z\s]/;
+
+        if (/^\s/.test(inputValue) || regex.test(inputValue)) {
+          errorMessage.show();
+          $(this).focus();
+          $(this).val(inputValue.replace(/^\s+|[^A-Za-z\s]+/g, ""));
+        } else {
+          errorMessage.hide();
+          $(this).focus();
+        }
+      });
+    });
+  </script>
+</body>
+</html>

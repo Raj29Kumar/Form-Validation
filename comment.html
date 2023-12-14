@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>JavaScript Character Limit</title>
+  <!-- Add any necessary stylesheets -->
+</head>
+
+<body>
+  <textarea class="form-control limittext" rows="4"></textarea>
+  <div class="charcount remainingChars1">200/200</div>
+
+  <textarea class="form-control limittext" rows="4"></textarea>
+  <div class="charcount remainingChars2">10/10</div>
+
+  <textarea class="form-control limittext" rows="4"></textarea>
+  <div class="charcount remainingChars3">15/15</div>
+
+
+  <div>First Name</div>
+  <input class="form-control name floating" id="addPhone" name="phone" type="text">
+  <span class="error-fname lname">Invalid Formate!</span>
+  
+
+  <div>Last Name</div>
+  <input class="form-control name floating" id="addPhone" name="phone" type="text">
+  <span class="error-fname lname">Invalid Formate!</span>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <script>
+    // $(document).ready(function() {
+    //   $(".limittext").on("input", function() {
+    //     var maxChars = 5;
+    //     var text = $(this).val();
+    //     var relatedDiv = $(this).next('.charcount');
+    //     var remainingChars = maxChars - text.length;
+
+    //     if (relatedDiv.hasClass('remainingChars2')) {
+    //       maxChars = 10;
+    //       remainingChars = maxChars - text.length;
+
+    //     } else if (relatedDiv.hasClass('remainingChars3')) {
+    //         maxChars = 15;
+    //         remainingChars = maxChars - text.length;
+    //     }
+
+    //     if (remainingChars < 0) {
+    //       var trimmedText = text.slice(0, maxChars);
+    //       $(this).val(trimmedText);
+    //       remainingChars = 0;
+    //     }
+
+    //     relatedDiv.text(remainingChars + "/" + maxChars);
+    //   });
+    // });
+
+    $(document).ready(function() {
+
+        $(".name").on("input", function () {
+        var name = $(this).val();
+
+        if (/^\s/.test(name) || /[^A-Za-z\s]/.test(name)) {
+            $('.error-fname').show();
+            $(this).focus();
+            $(this).val(name.replace(/^\s+|[^A-Za-z\s]+/g, ""));
+        } else {
+            $('.error-fname').hide();
+            $(this).focus();   
+        }
+
+    });
+
+
+
+
+      $(".limittext").on("input", function() {
+        var maxChars = 5;
+        var text = $(this).val();
+        var relatedDiv = $(this).next('.charcount');
+        var remainingChars = maxChars - text.length;
+
+        if (relatedDiv.hasClass('remainingChars2')) {
+          maxChars = 10;
+          remainingChars = maxChars - text.length;
+        } else if (relatedDiv.hasClass('remainingChars3')) {
+          maxChars = 15;
+          remainingChars = maxChars - text.length;
+        }
+
+        // Blocking HTML and CSS tags
+        var strippedText = text.replace(/(<([^>]+)>)/gi, '');
+        if (text !== strippedText) {
+          $(this).val(strippedText);
+          text = strippedText;
+          remainingChars = maxChars - text.length;
+          relatedDiv.text(remainingChars + "/" + maxChars);
+          return;
+        }
+
+        if (remainingChars < 0) {
+          var trimmedText = text.slice(0, maxChars);
+          $(this).val(trimmedText);
+          remainingChars = 0;
+        }
+
+        relatedDiv.text(remainingChars + "/" + maxChars);
+      });
+    });
+  </script>
+</body>
+</html>

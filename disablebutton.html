@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>JavaScript Form Validation</title>
+  <style>
+    .error-message {
+      color: red;
+      font-size: 12px;
+      display: none;
+      margin-top: 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <form class="myForm">
+    <div>
+      <label for="firstName">First Name:</label>
+      <input class="form-control name floating" type="text" required />
+      <span class="error-message">Please enter First Name!</span>
+    </div>
+
+    <div>
+      <label for="lastName">Last Name:</label>
+      <input class="form-control last-name floating" type="text" required />
+      <span class="error-message">Please enter Last Name!</span>
+    </div>
+
+    <div>
+      <label for="email">Email:</label>
+      <input class="form-control email floating" type="email" required />
+      <span class="error-message">Please enter a valid Email!</span>
+    </div>
+
+    <button type="submit" class="submitButton" disabled>Submit</button>
+  </form>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <script>
+    $(document).ready(function () {
+      $(".form-control").on("input", function () {
+        var form = $(this).closest('.myForm');
+        var submitButton = form.find('.submitButton');
+        var formIsValid = true;
+
+        form.find(".form-control[required]").each(function() {
+          if ($(this).val().trim() === '') {
+            formIsValid = false;
+            return false; // Exit loop early if any required field is empty
+          }
+        });
+
+        if (formIsValid) {
+          submitButton.prop('disabled', false);
+        } else {
+          submitButton.prop('disabled', true);
+        }
+      });
+
+      $(".myForm").submit(function(e) {
+        var submitButton = $(this).find('.submitButton');
+
+        if (submitButton.prop('disabled')) {
+          e.preventDefault();
+          alert("Please fill in all required fields!");
+        }
+      });
+    });
+  </script>
+</body>
+</html>

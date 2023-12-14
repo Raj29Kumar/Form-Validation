@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mobile Number Validation</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    input[type="text"] {
+      padding: 10px;
+      font-size: 16px;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+
+  <label for="mobileNumber">Enter Mobile Number:</label>
+  <input type="text" id="mobileNumber">
+  <p class="error" id="error-msg"></p>
+
+  <script>
+    $(document).ready(function() {
+        $(".name").on("input", function () {
+        var name = $(this).val();
+
+        if (/^\s/.test(name) || /[^A-Za-z\s]/.test(name)) {
+            $('.error-fname').show();
+            $(this).focus();
+            $(this).val(name.replace(/^\s+|[^A-Za-z\s]+/g, ""));
+        } else {
+            $('.error-fname').hide();
+            $(this).focus();   
+        }
+
+    });
+    });
+  </script>
+
+</body>
+</html>
